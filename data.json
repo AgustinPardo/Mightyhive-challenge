@@ -1,0 +1,47 @@
+{
+  "_id": "5ea2045db1cea16573d0df8c",
+  "index": 0,
+  "guid": "50faa529-2b22-403b-8cbc-af190c08208a",
+  "isActive": false,
+  "balance": "$3,546.06",
+  "picture": "http://placehold.it/32x32",
+  "age": 20,
+  "eyeColor": "green",
+  "name": "Carrie Summers",
+  "gender": "female",
+  "company": "PUSHCART",
+  "contactDetails": {
+    "email": "carriesummers@pushcart.com",
+    "phone": "+1 (946) 557-2433",
+    "address": "199 Montieth Street, Jackpot, Arizona, 9007"
+  },
+  "about": "In anim incididunt incididunt laboris. Deserunt irure veniam veniam ut consectetur tempor velit fugiat dolor consectetur magna qui. Quis sint et tempor velit dolore voluptate cupidatat. Aliqua id enim in consectetur labore elit cupidatat aliquip enim ipsum laboris tempor. Eiusmod ullamco ad minim consectetur nostrud elit dolore quis esse anim aliqua aute esse ut. Est laboris sit dolor cupidatat adipisicing tempor non quis in consequat pariatur amet.\r\n",
+  "registered": "2015-03-04T07:01:07 +03:00",
+  "latitude": -14.678543,
+  "longitude": 121.330071,
+  "tags": [
+    "duis",
+    "minim",
+    "culpa",
+    "duis",
+    "pariatur",
+    "aute",
+    "ut"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Webb Humphrey"
+    },
+    {
+      "id": 1,
+      "name": "Mejia Montgomery"
+    },
+    {
+      "id": 2,
+      "name": "Tanya Simmons"
+    }
+  ],
+  "greeting": "Hello, Carrie Summers! You have 2 unread messages.",
+  "favoriteFruit": "apple"
+}
