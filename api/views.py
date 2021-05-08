@@ -22,11 +22,8 @@ def getdata(request):
         key2=key.split("]")[1].lstrip(".")
         index=int(re.search('(?<=\[)(.*?)(?=\])', key)[0])
         if data.get(key1) and len(data.get(key1))>index :
-            res=data.get(key1)[index]
-            if type(res) != str:
-                res=res.get(key2)
-            else:
-                res=None
+            if type(data.get(key1)[index]) != str:
+                res=data.get(key1)[index].get(key2)
 
     if re.search('^\w*\[\d+\]$', key):
         key1=key.split("[")[0]
