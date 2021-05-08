@@ -2,7 +2,9 @@
 
 ## Deploy in Heroku ready to use:
 
-Example: 
+https://mightyhive-challenge.herokuapp.com/
+
+Example of Api request:
 https://mightyhive-challenge.herokuapp.com/getData/?key=contactDetails
 
 ## Deploy locally
