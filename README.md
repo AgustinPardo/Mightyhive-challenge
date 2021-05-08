@@ -40,9 +40,7 @@ python manage.py migrate
 python manage.py shell < model_dump.py
 ```
 
-#### Run app
-
-5. Execute to run the app at http://127.0.0.1:8000/:
+7. Execute to run the app at http://127.0.0.1:8000/:
 ```python
 python manage.py runserver
 ```
