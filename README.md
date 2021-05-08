@@ -1,5 +1,8 @@
 # Mightyhive-challenge
 
+## Deploy in Heroku ready to use
+
+
 ## Deploy locally
 
 #### Prerequisites:
@@ -24,7 +27,7 @@ cd Mightyhive-challenge
 pip install -r requirements.txt
 ```
 
-4. Create the database:
+4. Create the database (db.sqlite3):
 ```python
 python manage.py migrate
 ```
