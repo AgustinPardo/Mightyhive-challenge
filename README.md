@@ -1,7 +1,9 @@
 # Mightyhive-challenge
 
-## Deploy in Heroku ready to use
+## Deploy in Heroku ready to use:
 
+Example: 
+https://mightyhive-challenge.herokuapp.com/getData/?key=contactDetails
 
 ## Deploy locally
 
@@ -17,7 +19,7 @@ git
 git clone https://github.com/AgustinPardo/Mightyhive-challenge.git
 ```
 
-2. Go inside "Mightyhive-challenge" folder:
+2. Go inside "Mightyhive-challenge" app folder:
 ```
 cd Mightyhive-challenge
 ```
@@ -37,7 +39,7 @@ python manage.py migrate
 python manage.py shell < model_dump.py
 ```
 
-6. Run the app at http://127.0.0.1:8000/:
+6. Run the app server at http://127.0.0.1:8000/:
 ```python
 python manage.py runserver
 ```
