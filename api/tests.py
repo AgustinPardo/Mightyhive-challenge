@@ -67,12 +67,27 @@ class AccountTests(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), "carriesummers@pushcart.com")
 
-    def test_data_response_wrongLevel(self):
+    def test_data_response_level_wrong(self):
         response=self.c.get('/getData/', data={'key': 'ontactDetail.ema'})
         self.assertEqual(response.status_code, 404)
     
-    def test_data_response_list_and_Level(self):
+    def test_data_response_list_and_level_wrong(self):
         response=self.c.get('/getData/', data={'key': 'friends.e'})
         self.assertEqual(response.status_code, 404)
+
+    def test_data_response_listIndex_and_level_wrong1(self):
+        response=self.c.get('/getData/', data={'key': 'friends[2].na'})
+        self.assertEqual(response.status_code, 404)
+    
+    def test_data_response_listIndex_and_level_wrong2(self):
+        response=self.c.get('/getData/', data={'key': 'tags[2].name'})
+        self.assertEqual(response.status_code, 404)
+
+    def test_data_response_listIndex_and_level_good(self):
+        response=self.c.get('/getData/', data={'key': 'friends[2].name'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), "Tanya Simmons")
+
+    
 
 
