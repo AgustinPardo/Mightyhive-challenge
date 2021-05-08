@@ -23,11 +23,13 @@ cd Mightyhive-challenge
 pip install -r requirements.txt
 ```
 
-4. ```python
+4. 
+```python
 python3 manage.py makemigrations
 ```
 
-5. ```python
+5. 
+```python
 python3 manage.py migrate
 ```
 
