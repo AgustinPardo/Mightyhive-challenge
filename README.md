@@ -9,7 +9,7 @@ git
 
 #### Instalation (step by step):
 
-1. Execute:
+1. Clone the repository:
 ```
 git clone https://github.com/AgustinPardo/Mightyhive-challenge.git
 ```
@@ -19,36 +19,30 @@ git clone https://github.com/AgustinPardo/Mightyhive-challenge.git
 cd Mightyhive-challenge
 ```
 
-3. Execute:
+3. Install requirements:
 ```python
 pip install -r requirements.txt
 ```
 
-4. Execute:
-```python
-python manage.py makemigrations
-```
-
-5. Execute:
+4. Create the database:
 ```python
 python manage.py migrate
 ```
 
-6. Populate the model based on json.data file:
+5. Populate the database-model based on json.data file:
 
 ```python
 python manage.py shell < model_dump.py
 ```
 
-7. Execute to run the app at http://127.0.0.1:8000/:
+6. Run the app at http://127.0.0.1:8000/:
 ```python
 python manage.py runserver
 ```
 
 ## Testing
-Execute:
 ```python
-python manage.py Test
+python manage.py test
 ```
 
 ## Usage: REST Endpoint
