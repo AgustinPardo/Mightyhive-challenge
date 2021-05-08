@@ -1,9 +1,10 @@
 # Mightyhive-challenge
 
-## To deploy locally
+## Deploy locally
 
 #### Prerequisites:
 python3(3.6.9)
+
 git
 
 #### Instalation (step by step):
@@ -23,38 +24,37 @@ cd Mightyhive-challenge
 pip install -r requirements.txt
 ```
 
-4. 
+4. Execute:
 ```python
-python3 manage.py makemigrations
+python manage.py makemigrations
 ```
-
-5. 
-```python
-python3 manage.py migrate
-```
-
-6. Create the a model based on json.data file
-
-```python
-python3 manage.py shell < model_dump.py
-```
-
-#### Run app   at http://127.0.0.1:8000/
 
 5. Execute:
 ```python
-python3 manage.py runserver
+python manage.py migrate
+```
+
+6. Populate the model based on json.data file:
+
+```python
+python manage.py shell < model_dump.py
+```
+
+#### Run app
+
+5. Execute to run the app at http://127.0.0.1:8000/:
+```python
+python manage.py runserver
 ```
 
 ## Testing
 Execute:
 ```python
-python3 manage.py Test
+python manage.py Test
 ```
 
 ## Usage: REST Endpoint
 
 1. Run app
 2. Open any web browser you prefer.
-3. Go to http://localhost:8000/getData/?key="key to search" (e.g. http://localhost:8000/getData/?key="friends")
-
+3. Go to http://localhost:8000/getData/?key= "key to search" (e.g. http://localhost:8000/getData/?key="friends")
