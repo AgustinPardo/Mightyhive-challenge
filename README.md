@@ -29,8 +29,7 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-5. Populate the database-model based on json.data file:
-
+5. Populate the database-model based on "data.json" file:
 ```python
 python manage.py shell < model_dump.py
 ```
@@ -48,5 +47,8 @@ python manage.py test
 ## Usage: REST Endpoint
 
 1. Run app
-2. Open any web browser you prefer.
+2. Open any web browser you prefer
 3. Go to http://localhost:8000/getData/?key= "key to search" (e.g. http://localhost:8000/getData/?key="friends")
+
+## Additional comments if any
+The database is populated with the data from "data.json" file provided by the challenge

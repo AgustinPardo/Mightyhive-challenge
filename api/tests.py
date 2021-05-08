@@ -27,13 +27,11 @@ class AccountTests(APITestCase):
         '''
         self.assertTrue(Task.objects.first().data)
 
+    ## Tests that check the response data and response HTTP status code of key paths requests
+    
     def test_error_response_getData(self):
-        '''
-        Check if is model data is not empty
-        ''' 
         self.assertEqual(self.c.get('/getData/').status_code, 400)
 
-    ## Tests that check the response data and response HTTP status code of key paths requests
     def test_error_response(self):
         self.assertEqual(self.c.get('').status_code, 404)
 
@@ -68,7 +66,7 @@ class AccountTests(APITestCase):
         response=self.c.get('/getData/', data={'key': 'ontactDetail.ema'})
         self.assertEqual(response.status_code, 404)
     
-    def test_data_response_listLevel(self):
+    def test_data_response_list_and_Level(self):
         response=self.c.get('/getData/', data={'key': 'friends.e'})
         self.assertEqual(response.status_code, 404)
 
