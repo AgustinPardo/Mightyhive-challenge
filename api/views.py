@@ -22,7 +22,7 @@ def getdata(request):
         key2=key.split("]")[1].lstrip(".")
         index=int(re.search('(?<=\[)(.*?)(?=\])', key)[0])
         if data.get(key1) and len(data.get(key1))>index :
-            if type(data.get(key1)[index]) != str:
+            if type(data.get(key1)[index]) == dict:
                 res=data.get(key1)[index].get(key2)
 
     if re.search('^\w*\[\d+\]$', key):
@@ -34,7 +34,7 @@ def getdata(request):
     if re.search('^\w+\.\w+$', key):
         key1=key.split(".")[0]
         key2=key.split(".")[1]
-        if data.get(key1) and type(data.get(key1)) != list:
+        if data.get(key1) and type(data.get(key1)) == dict:
             res=data.get(key1).get(key2)
 
     if re.search('^\w+$', key):
