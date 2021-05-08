@@ -4,7 +4,7 @@
 
 https://mightyhive-challenge.herokuapp.com/
 
-Example of Api request:
+Example get request:
 
 https://mightyhive-challenge.herokuapp.com/getData/?key=contactDetails
 
