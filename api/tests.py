@@ -28,7 +28,7 @@ class AccountTests(APITestCase):
         self.assertTrue(Task.objects.first().data)
 
     ## Tests that check the response data and response HTTP status code of key paths requests
-    
+
     def test_error_response_getData(self):
         self.assertEqual(self.c.get('/getData/').status_code, 400)
 
@@ -38,6 +38,11 @@ class AccountTests(APITestCase):
     def test_error_response_badKey(self):
         response=self.c.get('/getData/', data={'key': 'ta'})
         self.assertEqual(response.status_code, 404)
+
+    def test_error_response_goodKey(self):
+        response=self.c.get('/getData/', data={'key': 'greeting'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), "Hello, Carrie Summers! You have 2 unread messages.")
 
     def test_data_response_list(self):
         response=self.c.get('/getData/', data={'key': 'tags'})

@@ -48,7 +48,4 @@ python manage.py test
 
 1. Run app
 2. Open any web browser you prefer
-3. Go to http://localhost:8000/getData/?key= "key to search" (e.g. http://localhost:8000/getData/?key="friends")
-
-## Additional comments if any
-The database is populated with the data from "data.json" file provided by the challenge
+3. Go to http://localhost:8000/getData/?key= "key to search" (e.g. http://localhost:8000/getData/?key=friends)
