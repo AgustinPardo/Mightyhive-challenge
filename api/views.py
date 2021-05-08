@@ -42,3 +42,10 @@ def getdata(request):
         return Response(res)
     else:
         return HttpResponse(status=404)
+
+
+@api_view(['GET'])
+def home(request):
+    task=Task.objects.first()
+    data=task.data
+    return Response(data)
