@@ -14,40 +14,31 @@ def getdata(request):
 
     if not key:
         return HttpResponse(status=400)
-
+    
     res=None
 
     if re.search('^\w*\[\d+\]\.\w+$', key):
         key1=key.split("[")[0]
         key2=key.split("]")[1].lstrip(".")
         index=int(re.search('(?<=\[)(.*?)(?=\])', key)[0])
-        res=data.get(key1)
-        if res and len(res)>index :
+        if data.get(key1) and len(data.get(key1))>index :
             res=data.get(key1)[index]
             if type(res) != str:
                 res=res.get(key2)
             else:
                 res=None
-        else:
-            res=None
 
     if re.search('^\w*\[\d+\]$', key):
         key1=key.split("[")[0]
         index=int(key.split("[")[1].rstrip("]"))
-        res=data.get(key1)
-        if res and len(res)>index:
+        if data.get(key1) and len(data.get(key1))>index:
             res=data.get(key1)[index]
-        else:
-            res=None
 
-    if re.search('^\w+\.\w+', key):
+    if re.search('^\w+\.\w+$', key):
         key1=key.split(".")[0]
         key2=key.split(".")[1]
-        res=data.get(key1)
-        if res and type(res) != list:
-            res=res.get(key2)
-        else:
-            res=None
+        if data.get(key1) and type(data.get(key1)) != list:
+            res=data.get(key1).get(key2)
 
     if re.search('^\w+$', key):
         res=data.get(key)
