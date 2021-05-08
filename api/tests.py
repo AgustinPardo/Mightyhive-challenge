@@ -32,8 +32,8 @@ class AccountTests(APITestCase):
     def test_error_response_getData(self):
         self.assertEqual(self.c.get('/getData/').status_code, 400)
 
-    def test_error_response(self):
-        self.assertEqual(self.c.get('').status_code, 404)
+    def test_home_response(self):
+        self.assertEqual(self.c.get('').status_code, 200)
 
     def test_error_response_badKey(self):
         response=self.c.get('/getData/', data={'key': 'ta'})
