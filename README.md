@@ -5,6 +5,7 @@
 https://mightyhive-challenge.herokuapp.com/
 
 Example of Api request:
+
 https://mightyhive-challenge.herokuapp.com/getData/?key=contactDetails
 
 ## Deploy locally
