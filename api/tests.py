@@ -7,64 +7,69 @@ from .models import Task
 
 class AccountTests(APITestCase):
 
-    def test_populate_model(self):
-        """
-        Ensure if Task QuerySet object is created, and populate the object model for next test
-
-        """
-        f = open('data.json','r')
+    def setUp(self):
+        f = open('api/dataDump/data.json','r')
         data = json.load(f)
         first=Task(data=data)
         first.save()
         f.close()
+        self.c = Client()
+
+    def test_populate_model(self):
+        '''
+        Check if is model is created
+        '''
         self.assertEqual(Task.objects.all().count(), 1)
-        return first
 
     def test_data_model(self):
-        """
-        Ensure the object model data is not empty
-        """
-        first=self.test_populate_model()
-        self.assertTrue(first.data)
+        '''
+        Check if is model data is not empty
+        '''
+        self.assertTrue(Task.objects.first().data)
 
+    def test_error_response_getData(self):
+        '''
+        Check if is model data is not empty
+        ''' 
+        self.assertEqual(self.c.get('/getData/').status_code, 400)
+
+    ## Tests that check the response data and response HTTP status code of key paths requests
     def test_error_response(self):
-        """
-        Ensure status code of a non exist route
-        """
-        c = Client()
-        self.assertEqual(c.get('').status_code, 404)
+        self.assertEqual(self.c.get('').status_code, 404)
 
-    def test_data_response(self):
-        """
-        Check if the get request reponse of list type is fine
-        """
-        self.test_populate_model()
-        c = Client()
-        response=c.get('/getData/', data={'key': 'tags'})
-        self.assertEqual(response.json(), [
-                                            "duis",
-                                            "minim",
-                                            "culpa",
-                                            "duis",
-                                            "pariatur",
-                                            "aute",
-                                            "ut"
-                                        ])
+    def test_error_response_badKey(self):
+        response=self.c.get('/getData/', data={'key': 'ta'})
+        self.assertEqual(response.status_code, 404)
+
+    def test_data_response_list(self):
+        response=self.c.get('/getData/', data={'key': 'tags'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), ["duis", "minim", "culpa", "duis", "pariatur", "aute","ut"])
 
     def test_data_response_listIndex(self):
-        """
-        Check if the get request reponse of a indexing list is fine
-        """
-        self.test_populate_model()
-        c = Client()
-        response=c.get('/getData/', data={'key': 'tags[1]'})
+        response=self.c.get('/getData/', data={'key': 'tags[1]'})
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), "minim")
+    
+    def test_error_response_listOutRangeKey(self):
+        response=self.c.get('/getData/', data={'key': 'tags[10]'})
+        self.assertEqual(response.status_code, 404)
 
-    def test_data_response_level2(self):
-        """
-        Check if the get request reponse of a concatenate key is fine
-        """
-        self.test_populate_model()
-        c = Client()
-        response=c.get('/getData/', data={'key': 'contactDetails.email'})
+    def test_error_response_listOutRangeBorder(self):
+        response=self.c.get('/getData/', data={'key': 'friends[4]'})
+        self.assertEqual(response.status_code, 404)
+
+    def test_data_response_level(self):
+        response=self.c.get('/getData/', data={'key': 'contactDetails.email'})
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), "carriesummers@pushcart.com")
+
+    def test_data_response_wrongLevel(self):
+        response=self.c.get('/getData/', data={'key': 'ontactDetail.ema'})
+        self.assertEqual(response.status_code, 404)
+    
+    def test_data_response_listLevel(self):
+        response=self.c.get('/getData/', data={'key': 'friends.e'})
+        self.assertEqual(response.status_code, 404)
+
+
