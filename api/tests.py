@@ -17,17 +17,17 @@ class AccountTests(APITestCase):
 
     def test_populate_model(self):
         '''
-        Check if is model is created
+        Check if the model is created
         '''
         self.assertEqual(Task.objects.all().count(), 1)
 
     def test_data_model(self):
         '''
-        Check if is model data is not empty
+        Check if the model data is not empty
         '''
         self.assertTrue(Task.objects.first().data)
 
-    ## Tests that check the response data and response HTTP status code of key paths requests
+    ## Check response data and response HTTP status code of key paths requests
 
     def test_error_response_getData(self):
         self.assertEqual(self.c.get('/getData/').status_code, 400)
