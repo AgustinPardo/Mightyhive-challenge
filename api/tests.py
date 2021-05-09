@@ -99,6 +99,18 @@ class AccountTests(APITestCase):
     def test_data_response_more_levels(self):
         response=self.c.get('/getData/', data={'key': 'contactDetails.email.level3'})
         self.assertEqual(response.status_code, 404)
+    
+    def test_data_response_listIndex_and_levelIndex(self):
+        response=self.c.get('/getData/', data={'key': 'friend[1].name[2]'})
+        self.assertEqual(response.status_code, 404)
+
+    def test_data_response_noSenseSymbol(self):
+        response=self.c.get('/getData/', data={'key': '['})
+        self.assertEqual(response.status_code, 404)
+
+    def test_data_response_noSenseKey(self):
+        response=self.c.get('/getData/', data={'key': 'friend.[2].first.name[1]'})
+        self.assertEqual(response.status_code, 404)
 
 
 
