@@ -16,13 +16,15 @@ def getdata(request):
     if not key:
         return HttpResponse(status=400)
 
+    # Split the query string in parts by "." symbol
     keys=key.split(".")
-    # Evalue if the parts of the query string match the pattern: "list[int]" or "string of characters", otherwise "None" is return
+
+    # Evaluate if the parts of the query string match the pattern: "character[int]" or "string of characters", otherwise "None" is return
     query_strings=[re.search('^\w+$', key) or re.search('^\w+\[\d+\]$', key) for key in keys]
 
     res=None
 
-    # Check if all parts of the query string are well formated with the required structure
+    # Check if all parts of the query string are well formated based on the patterns
     if all(query_strings):
 
         # Format the query string as a list of steps(path) of "strings" or "integers" to go through the json file structure
@@ -35,22 +37,22 @@ def getdata(request):
                 path.append(step)
 
         # Use the steps of the path to search in the data structure
-        def recuriveSearch(data, path):
+        def recursiveSearch(data, path):
             if len(path)>0 and (type(data) == str or type(data) == int or type(data) == type(None)):
                 return None
             if len(path)==0:
                 return data
             if type(data) == dict:
                 data=data.get(path[0])
-                return recuriveSearch(data,path[1:])
+                return recursiveSearch(data,path[1:])
             if type(data) == list:
                 if type(path[0]) == int and len(data)>path[0]:
                     data=data[path[0]]
                 else:
                     data=None
-                return recuriveSearch(data,path[1:])
+                return recursiveSearch(data,path[1:])
 
-        res=recuriveSearch(data, path)
+        res=recursiveSearch(data, path)
 
     if res:
         return Response(res)
