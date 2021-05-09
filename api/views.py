@@ -17,12 +17,12 @@ def getdata(request):
         return HttpResponse(status=400)
 
     keys=key.split(".")
-    # Save query strings with the correct structure: list[int] or a string of characters, otherwise "None"
+    # Evalue if the parts of the query string match the pattern: "list[int]" or "string of characters", otherwise "None" iis return
     query_strings=[re.search('^\w+$', key) or re.search('^\w+\[\d+\]$', key) for key in keys]
 
     res=None
 
-    # Check if all the query strings are well formated with the required structure
+    # Check if all parts of the query string are well formated with the required structure
     if all(query_strings):
 
         # Format the query string as a list of steps(path) of strings or integers to go through the json file structure
