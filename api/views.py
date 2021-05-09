@@ -17,7 +17,7 @@ def getdata(request):
         return HttpResponse(status=400)
 
     keys=key.split(".")
-    # Evalue if the parts of the query string match the pattern: "list[int]" or "string of characters", otherwise "None" iis return
+    # Evalue if the parts of the query string match the pattern: "list[int]" or "string of characters", otherwise "None" is return
     query_strings=[re.search('^\w+$', key) or re.search('^\w+\[\d+\]$', key) for key in keys]
 
     res=None
@@ -25,7 +25,7 @@ def getdata(request):
     # Check if all parts of the query string are well formated with the required structure
     if all(query_strings):
 
-        # Format the query string as a list of steps(path) of strings or integers to go through the json file structure
+        # Format the query string as a list of steps(path) of "strings" or "integers" to go through the json file structure
         path=[]
         for step in keys:
             if "[" in step:
