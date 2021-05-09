@@ -1,6 +1,6 @@
 # Mightyhive-challenge
 
-## Deploy in Heroku ready to use:
+## Deployed in Heroku ready to use:
 
 ### https://mightyhive-challenge.herokuapp.com/
 
